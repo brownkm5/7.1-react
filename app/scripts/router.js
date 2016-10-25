@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 
 var model = require('./models/image.js');
 var ImageFormComponent = require('./components/form.jsx').ImageForm;
-var ImageListComponent = require('./components/listing.jsx');
+// var ImageListComponent = require('./components/listing.jsx');
 
 var ImageRouter = Backbone.Router.extend({
   routes: {
@@ -19,7 +19,7 @@ var ImageRouter = Backbone.Router.extend({
   index: function(){
   ReactDOM.render(
       React.createElement(ImageFormComponent, {collection: this.images}),
-      document.getElementById('header')
+      document.getElementById('app')
     );
   }
   // images.fetch();

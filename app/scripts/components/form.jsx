@@ -2,6 +2,8 @@ var _ = require('underscore');
 var React = require('react');
 var $ = require('jquery');
 var Backbone = require('backbone');
+var ImageListing = require('./listing.jsx');
+
 
 //pulls the values from a form
 $.fn.serializeObject = function() {
@@ -28,6 +30,9 @@ var ImageForm = React.createClass({
     this.props.collection.create(inputValues);
 
     console.log(this.props.collection);
+
+    $('.url').val('');
+    $('.caption').val('');
   },
   render: function(){
     var form;
@@ -41,10 +46,13 @@ var ImageForm = React.createClass({
       );
     }
     return (
-      <div className='well'>
+    <div className="contain">
+      <header className='well'>
         <button className='add-button btn btn-primary glyphicon glyphicon-plus' type="button" name="button" onClick={this.handleClick}></button>
         {form}
-      </div>
+      </header>
+      <ImageListing collection={this.props.collection}/>
+    </div>
     )
   }
 });
