@@ -51,8 +51,8 @@ var ImageForm = React.createClass({
         <button className='add-button btn btn-primary glyphicon glyphicon-plus' type="button" name="button" onClick={this.handleClick}></button>
         {form}
       </header>
-      <ImageListing collection={this.props.collection}/>
     </div>
+    //<ImageListing collection={this.props.collection}/>
     )
   }
 });
