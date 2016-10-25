@@ -27,15 +27,7 @@ var ImageForm = React.createClass({
     $.post('https://tiny-lasagna-server.herokuapp.com/collections/kevintrialimagecard', $('.image-form').serializeObject());
     var getImages = $.get('https://tiny-lasagna-server.herokuapp.com/collections/kevintrialimagecard');
     console.log(getImages);
-
-    // var imageUrl = $('.url').val();
-    // var imageCaption = $('.caption').val();
-    // this.props.collection.create({
-    //   url: imageUrl,
-    //   caption:imageCaption
-    // });
-    // this.props.collection.fetch();
-
+    
     console.log(this.props.collection);
   },
   render: function(){
