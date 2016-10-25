@@ -1,8 +1,14 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 
-require('./router');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var AppComponent = require('./components/app.jsx').AppComponent;
+// require('./router');
 
 $(function(){
-  Backbone.history.start();
+  ReactDOM.render(
+      React.createElement(AppComponent),
+      document.getElementById('app')
+    );
 });
