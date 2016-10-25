@@ -24,10 +24,9 @@ var ImageForm = React.createClass({
   },
   addImage: function(e){
     e.preventDefault();
-    $.post('https://tiny-lasagna-server.herokuapp.com/collections/kevintrialimagecard', $('.image-form').serializeObject());
-    var getImages = $.get('https://tiny-lasagna-server.herokuapp.com/collections/kevintrialimagecard');
-    console.log(getImages);
-    
+    var inputValues = $('.image-form').serializeObject();
+    this.props.collection.create(inputValues);
+
     console.log(this.props.collection);
   },
   render: function(){
@@ -43,7 +42,7 @@ var ImageForm = React.createClass({
     }
     return (
       <div className='well'>
-        <button className='btn btn-primary' type="button" name="button" onClick={this.handleClick}>+</button>
+        <button className='add-button btn btn-primary glyphicon glyphicon-plus' type="button" name="button" onClick={this.handleClick}></button>
         {form}
       </div>
     )

@@ -13,7 +13,8 @@ var ImageRouter = Backbone.Router.extend({
   },
   initialize: function(){
     var images = this.images = new model.ImagesCollection();
-    console.log(images);
+    this.images.fetch();
+    console.log(this.images);
   },
   index: function(){
   ReactDOM.render(

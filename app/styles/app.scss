@@ -12,7 +12,25 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 
-.form-control{
-  display: inline-block;
-  width: 300px;
+.image-form{
+  .form-control{
+    display: inline-block;
+    width: 300px;
+    margin-right: 30px;
+    margin-top: 15px;
+  }
+  .submit-image{
+    margin-bottom: 2px;
+    height: 34px;
+  }
+}
+
+.well{
+  background-color: rgb(69,	108,	153);
+  .add-button{
+    border-radius: 50%;
+    font-size: 25px;
+    color: rgb(69,	108,	153);
+    background-color: rgb(8,	34,	56);
+  }
 }
