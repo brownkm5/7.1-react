@@ -5779,4 +5779,11 @@ button.close {
     font-size: 25px;
     color: #456c99;
     background-color: #082238; }
+
+h3 {
+  color: white; }
+
+.buttons {
+  text-align: right; }
+
 /*# sourceMappingURL=app.css.map */
