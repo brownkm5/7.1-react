@@ -17,7 +17,7 @@ var AppComponent = React.createClass({
     });
 
     return {
-      imageToEdit: imageModel,
+      imageToEdit: false,
       collection: imageBoard,
       showForm: false
     };
@@ -32,7 +32,7 @@ var AppComponent = React.createClass({
     var showForm = !this.state.showForm;
     this.setState({showForm: showForm});
   },
-  handleEdit: function(image){
+  handleEdit: function(model){
     this.setState({showForm: true, imageToEdit: model});
   },
   deleteImage: function(image){

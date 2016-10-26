@@ -27,6 +27,14 @@ var FormComponent = React.createClass({
     var urlInputValue = e.target.value;
     this.setState({url: urlInputValue});
   },
+  componentWillReceiveProps: function(nextProps){
+    if(nextProps.model){
+      this.setState({
+        url: nextProps.model.get('url'),
+        caption: nextProps.model.get('caption')
+      });
+    }
+  },
   handleCaptionChange: function(e){
     var captionValue = e.target.value;
     this.setState({caption: captionValue});
@@ -34,13 +42,16 @@ var FormComponent = React.createClass({
   //toggles the form view
   handlesubmit: function(e){
     e.preventDefault();
-    var newImage = {url: this.state.url, caption: this.state.caption};
 
-    this.props.addImage(newImage);
+      var imageData = {url: this.state.url, caption: this.state.caption};
 
-    this.setState({url: '', caption:''});
-    // this.showForm = !this.showForm;
-    // this.forceUpdate();
+      if(this.props.model){
+        this.props.editImage(this.props.model, imageData);
+      }else{
+        this.props.addImage(imageData);
+      }
+
+      this.setState({url: '', caption: ''});
   },
   // addImage: function(e){
   //   e.preventDefault();
@@ -56,9 +67,9 @@ var FormComponent = React.createClass({
     return (
       <div className="well">
         <form className="image-form form-group" action="index.html" onSubmit={this.handlesubmit}>
-          <input onChange={this.handleUrlChange} className='form-control url' type="url" name="url" placeholder='Image URL' />
-          <input onChange={this.handleCaptionChange} className='form-control caption' type="text" name="caption" placeholder='Caption' />
-          <button className='submit-image btn btn-success' name="button">Add Image</button>
+          <input onChange={this.handleUrlChange} value={this.state.url} className='form-control url' type="url" name="url" placeholder='Image URL' />
+          <input onChange={this.handleCaptionChange} value={this.state.caption} className='form-control caption' type="text" name="caption" placeholder='Caption' />
+          <button className='submit-image btn btn-success' name="button">{this.props.model ? 'Edit' : 'Add'} Image</button>
         </form>
       </div>
     );

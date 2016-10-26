@@ -12,10 +12,10 @@ var ImageList = React.createClass({
   },
   render: function(){
       return (
-        <div className='col-sm-offset-1 col-xs-offset-1 col-sm-10'>
+        <div className='col-sm-offset-2 col-xs-offset-2 col-sm-8 col-xs-8'>
           <img className='will col-sm-12 col-xs-12' src={this.props.model.get('url')} alt="" />
           <div className="well">
-            <h3 class='caption'>
+            <h3 className='caption'>
               {this.props.model.get('caption')}
             </h3>
             <div className="buttons">
