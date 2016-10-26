@@ -5764,11 +5764,8 @@ button.close {
   box-sizing: border-box; }
 
 img {
-  height: 800px; }
+  max-height: 700px; }
 
-@media (max-width: 768px) {
-  img {
-    height: 400px; } }
 .image-form .form-control {
   display: inline-block;
   width: 300px;
