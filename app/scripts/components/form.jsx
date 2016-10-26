@@ -19,8 +19,8 @@ var FormComponent = React.createClass({
   // },
   getInitialState: function(){
     return {
-      url: this.props.model.get('url'),
-      caption: this.props.model.get('caption')
+      url: '',
+      caption: ''
     };
   },
   handleUrlChange: function(e){
