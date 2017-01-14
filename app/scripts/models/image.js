@@ -8,7 +8,7 @@ idAttribute: '_id'
 
 var ImagesCollection = Backbone.Collection.extend({
   model: ImageCard,
-  url: 'https://tiny-lasagna-server.herokuapp.com/collections/kevintrialtwoimagecard'
+  url: 'https://kevinbrowntown.herokuapp.com/classes/Images'
 });
 
 module.exports = {
