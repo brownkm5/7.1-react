@@ -5,14 +5,6 @@ var Backbone = require('backbone');
 var ImageListing = require('./listing.jsx');
 
 
-//pulls the values from a form
-// $.fn.serializeObject = function() {
-//    return this.serializeArray().reduce(function(acum, i) {
-//      acum[i.name] = i.value;
-//      return acum;
-//    }, {});
-//  };
-
 var FormComponent = React.createClass({
   // componentWillMount: function(){
   //   this.showForm = false;
@@ -28,6 +20,7 @@ var FormComponent = React.createClass({
     this.setState({url: urlInputValue});
   },
   componentWillReceiveProps: function(nextProps){
+    console.log(nextProps);
     if(nextProps.model){
       this.setState({
         url: nextProps.model.get('url'),
@@ -44,14 +37,16 @@ var FormComponent = React.createClass({
     e.preventDefault();
 
       var imageData = {url: this.state.url, caption: this.state.caption};
-
+      // console.log(this.props.model, 'model');
+      // debugger
       if(this.props.model){
+        // console.log(this.props.model, 'model');
         this.props.editImage(this.props.model, imageData);
       }else{
         this.props.addImage(imageData);
       }
 
-      this.setState({url: '', caption: ''});
+      // this.setState({url: '', caption: ''});
   },
   // addImage: function(e){
   //   e.preventDefault();
@@ -64,8 +59,9 @@ var FormComponent = React.createClass({
   //   $('.caption').val('');
   // },
   render: function(){
+    // console.log(this.state.url);
     return (
-      <div className="well">
+      <div className="">
         <form className="image-form form-group" action="index.html" onSubmit={this.handlesubmit}>
           <input onChange={this.handleUrlChange} value={this.state.url} className='form-control url' type="url" name="url" placeholder='Image URL' />
           <input onChange={this.handleCaptionChange} value={this.state.caption} className='form-control caption' type="text" name="caption" placeholder='Caption' />

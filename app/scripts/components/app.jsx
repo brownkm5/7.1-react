@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var React = require('react');
 
 var ImagesCollection = require('../models/image.js').ImagesCollection;
@@ -9,47 +10,72 @@ var ImageListing = require('./listing.jsx');
 var AppComponent = React.createClass({
   getInitialState: function(){
     var self = this;
-    var imageBoard = new ImagesCollection();
+
     var imageModel = new Image();
+
+    return {
+      imageToEdit: '',
+      collection: [],
+      showForm: true
+    };
+  },
+
+  componentWillMount: function(){
+    var self = this;
+    var imageBoard = new ImagesCollection();
+
+    this.parseSetup();
 
     imageBoard.fetch().then(function(){
       self.setState({collection: imageBoard});
     });
-
-    return {
-      imageToEdit: false,
-      collection: imageBoard,
-      showForm: false
-    };
+    // console.log(this.state.collection);
   },
+
+  parseSetup: function(){
+    $.ajaxSetup({
+      beforeSend: function(xhr){
+        xhr.setRequestHeader('X-Parse-Application-Id', 'kmbparse');
+        xhr.setRequestHeader('X-Parse-REST-API-Key', 'kylesb');
+      }
+    });
+  },
+
   addImage: function(imageModel){
+    console.log(this.state.collection);
     this.state.collection.create(imageModel);
     this.setState({collection: this.state.collection});
   },
+
   handleToggleForm: function(e){
     e.preventDefault();
 
     var showForm = !this.state.showForm;
     this.setState({showForm: showForm});
   },
+
   handleEdit: function(model){
+    console.log(model, 'app');
     this.setState({showForm: true, imageToEdit: model});
+    console.log(this.state.imageToEdit, 'image');
   },
+
   deleteImage: function(image){
     image.destroy();
     this.setState({collection: this.state.collection});
   },
-  editImage: function(model, data){
-   model.set(data);
-   model.save();
 
-   this.setState({imageToEdit: false, showForm: false});
- },
+  editImage: function(model, data){
+    console.log(data);
+    model.save(data);
+
+    this.setState({imageToEdit: false, showForm: false});
+  },
+
   render: function(){
     var self = this;
 
     var imageList = this.state.collection.map(function(image){
-      console.log('image', image.get('_id'));
       var key = image.get('_id') || image.cid;
       return (
         <ImageListing
@@ -65,14 +91,14 @@ var AppComponent = React.createClass({
       <div>
         <div className="contain">
           <header className='well col-sm-12 col-xs-12'>
-            <button className='add-button btn btn-primary glyphicon glyphicon-plus' type="button" name="button" onClick={this.handleToggleForm}></button>
-          </header>
-        <div className="container">
-            <div className="row">
-              <div className="col-md-12 col-sm-12 col-xs-12">
+            <div className="">
+              <div className="form-component">
                 {this.state.showForm ? <FormComponent model={this.state.imageToEdit} addImage={this.addImage} editImage={this.editImage}/> : null}
               </div>
             </div>
+          </header>
+        <div className="container">
+
             <div className="row">
               {imageList}
             </div>
